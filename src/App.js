@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter } from "react-router-dom";
+import { Route } from "react-router-dom";
+import Axios_qlsv from "./Axios_QLSV/Axios_qlsv";
+import DSSVPage from "./Axios_QLSV/Pages/DSSVPage";
+import HomePages from "./Axios_QLSV/Pages/HomePages";
+import { Switch } from "react-router-dom";
+import NavSinhVien from "./Axios_QLSV/Componet/NavSinhVien";
+import ChiTietSV from "./Axios_QLSV/Pages/ChiTietSV";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <NavSinhVien />
+      <Switch>
+        <Route path={"/home"} component={HomePages} />
+        <Route path={"/dssv"} component={Axios_qlsv} />
+        <Route path={"/detail/:id"} component={ChiTietSV} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
