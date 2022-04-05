@@ -8,11 +8,13 @@ import HomePages from "./Axios_QLSV/Pages/HomePages";
 import { Switch } from "react-router-dom";
 import NavSinhVien from "./Axios_QLSV/Componet/NavSinhVien";
 import ChiTietSV from "./Axios_QLSV/Pages/ChiTietSV";
+import LoadingPage from "./Axios_QLSV/Componet/LoadingPages/LoadingPage";
 
 function App() {
   return (
     <BrowserRouter>
       <NavSinhVien />
+      <LoadingPage />
       <Switch>
         <Route path={"/home"} component={HomePages} />
         <Route path={"/dssv"} component={Axios_qlsv} />
