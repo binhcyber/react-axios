@@ -5,11 +5,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { rootReducer } from "./Axios_QLSV/redux/reducer/index";
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+import quanlysinhvienSlice from "./Axios_QLSV/redux/quanlysinhvienSlice";
+const store = configureStore({
+  reducer: {
+    qlsv: quanlysinhvienSlice,
+  },
+});
 ReactDOM.render(
   <Provider store={store}>
     <App />
