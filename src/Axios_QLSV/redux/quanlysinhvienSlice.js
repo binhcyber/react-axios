@@ -8,6 +8,22 @@ export const quanlysinhvienAction = createAsyncThunk(
     return result.data;
   }
 );
+export const xoasinhvienAction = createAsyncThunk(
+  "qlsv/xoasinhvienAction",
+  async (id) => {
+    const result = await QLSVAXIOS.xoasinhvien(id);
+    console.log(result);
+    return result.data;
+  }
+);
+export const themsinhvienAction = createAsyncThunk(
+  "qlsv/themsinhvienAction",
+  async (data) => {
+    const result = await QLSVAXIOS.themsinhvien(data);
+    console.log(result);
+    return result.data;
+  }
+);
 const initialState = {
   dssv: [],
 };
@@ -20,8 +36,19 @@ export const quanlysinhvienSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(themsinhvienAction.fulfilled, (state, action) => {
+      state.dssv.push(action.payload);
+    });
     builder.addCase(quanlysinhvienAction.fulfilled, (state, action) => {
       state.dssv = action.payload;
+    });
+    builder.addCase(xoasinhvienAction.fulfilled, (state, action) => {
+      console.log(state);
+      console.log(action);
+      const xoaDSSV = state.dssv.filter((sv) => {
+        return sv.id !== action.payload.id;
+      });
+      state.dssv = xoaDSSV;
     });
   },
 });
